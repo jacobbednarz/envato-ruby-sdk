@@ -1,5 +1,3 @@
+require 'envato/client'
+require 'envato/errors'
 require 'envato/version'
-
-module Envato
-  # Your code goes here...
-end
