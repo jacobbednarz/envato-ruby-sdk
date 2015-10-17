@@ -1,28 +1,30 @@
-require 'faraday'
-require 'json'
+require 'envato/connection'
+require 'envato/configurable'
 
 module Envato
   class Client
+
+    include Envato::Connection
+    include Envato::Configurable
+
     def initialize(options = {})
-      if options[:token].nil?
-        raise MissingAPITokenError, 'You must define an API token for authorization.'
+      Envato::Configurable.keys.each do |key|
+        instance_variable_set(:"@#{key}", options[key] || Envato.instance_variable_get(:"@#{key}"))
       end
 
-      @options = options
+      if @access_token.nil?
+        raise MissingAPITokenError, 'You must define an API token for authorization.'
+      end
     end
 
     def inspect
       inspected = super
 
-      if @options[:token]
-        inspected = inspected.gsub! @options[:token], conceal(@options[:token])
+      if @access_token
+        inspected = inspected.gsub! @access_token, conceal(@access_token)
       end
 
       inspected
-    end
-
-    def get(url)
-      request :get, url
     end
 
     def conceal(string)
@@ -32,48 +34,6 @@ module Envato
         front = string[0, 4]
         back  = string[-4, 4]
         "#{front}****#{back}"
-      end
-    end
-
-    def proxy?
-      (ENV['HTTPS_PROXY'].nil? || ENV['HTTPS_PROXY'].empty?) ? false : true
-    end
-
-    def proxy_opts
-      (proxy?) ? { uri: ENV['HTTPS_PROXY'] } : nil
-    end
-
-    def ssl_opts
-      { verify: true }
-    end
-
-    def api_host
-      'https://api.envato.com'
-    end
-
-    def api_version
-      'v1'
-    end
-
-    private
-
-    def request(method, url, options = {})
-      request = Faraday.new(url: api_host, ssl: ssl_opts) do |c|
-        c.adapter Faraday.default_adapter
-        c.headers['User-Agent'] = "Envato SDK (#{Envato::VERSION})"
-        c.authorization(:Bearer, @options[:token])
-        c.proxy proxy_opts
-      end
-
-      case method
-      when :get
-        response = request.get "#{api_version}/#{url}"
-      end
-
-      begin
-        JSON.parse(response.body)
-      rescue JSON::ParserError
-        response.body
       end
     end
   end
