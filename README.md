@@ -76,7 +76,7 @@ $ rm -rf spec/cassettes/*
 # Pass your REAL credentials in as environment variables and run the RSpec
 # command.
 $ ENVATO_TEST_API_TOKEN=thisisarealtoken \
-  ENVATO_TEST_API_TOKEN=thisisarealuser \
+  ENVATO_TEST_API_USERNAME=thisisarealuser \
   bundle exec rspec spec
 ```
 
