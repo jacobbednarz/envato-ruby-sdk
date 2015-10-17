@@ -20,5 +20,5 @@ def test_api_token
 end
 
 def test_api_username
-  ENV.fetch('ENVATO_TEST_API_TOKEN', 'apideveloper')
+  ENV.fetch('ENVATO_TEST_API_USERNAME', 'apideveloper')
 end
