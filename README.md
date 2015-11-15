@@ -22,7 +22,7 @@ First things first. Create an instance of the client which will be used by all
 connections from here on out.
 
 ```rb
-client = Envato::Client.new(token: 'mytops3crettoken')
+client = Envato::Client.new(access_token: 'mytops3crettoken')
 
 # Send a 'GET' for the total number of users.
 response = client.get 'market/total-users.json'
@@ -33,7 +33,7 @@ As this project grows the endpoints will be wrapped in usable methods so instead
 of building the request above, you can use the following:
 
 ```rb
-client = Envato::Client.new(token: 'mytops3crettoken')
+client = Envato::Client.new(access_token: 'mytops3crettoken')
 client.total_users
 # => 8676143
 
