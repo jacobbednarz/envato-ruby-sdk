@@ -34,11 +34,23 @@ module Envato
         response = request.get "#{api_version}/#{url}"
       end
 
+      case response.status.to_i
+        when 403      then raise Envato::ForbiddenError, extract_forbidden_message(response)
+        when 404      then raise Envato::NotFoundError
+        when 405..499 then raise Envato::ClientError
+        when 500..599 then raise Envato::ServerError
+      end
+
       begin
         JSON.parse(response.body)
       rescue JSON::ParserError
         response.body
       end
+    end
+
+    def extract_forbidden_message(response)
+      body = JSON.parse(response.body)
+      body['error_description']
     end
   end
 end
