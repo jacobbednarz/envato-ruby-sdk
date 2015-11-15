@@ -27,6 +27,14 @@ describe Envato::Connection do
       end
     end
 
+    context 'server errors' do
+      it 'raise a ServerError' do
+        VCR.use_cassette('client/server_error') do
+          expect { client.get('market/active-threads:themeforest.net') }.to raise_error(Envato::ServerError)
+        end
+      end
+    end
+
     context 'forbidden requests' do
       it 'raise a ForbiddenError' do
         VCR.use_cassette('client/forbidden') do
