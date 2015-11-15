@@ -18,6 +18,35 @@ describe Envato::Connection do
     it { expect(client.api_version).to be_a(String) }
   end
 
+  describe '.get' do
+    context 'with valid JSON response' do
+      it 'is a hash' do
+        VCR.use_cassette('client/valid_response') do
+          expect(client.get('market/total-items.json')).to be_a(Hash)
+        end
+      end
+    end
+
+    context 'forbidden requests' do
+      it 'raise a ForbiddenError' do
+        VCR.use_cassette('client/forbidden') do
+          # Kill off the access token we've defined to force the authentication
+          # to fail.
+          client.access_token = ''
+          expect { client.get('market/non-existent-url') }.to raise_error(Envato::ForbiddenError)
+        end
+      end
+    end
+
+    context 'not found requests' do
+      it 'raise a NotFoundError' do
+        VCR.use_cassette('client/not_found') do
+          expect { client.get('market/non-existent-url') }.to raise_error(Envato::NotFoundError)
+        end
+      end
+    end
+  end
+
   describe '#request' do
     let(:client_with_proxy) do
       Envato::Client.new(
@@ -34,26 +63,6 @@ describe Envato::Connection do
         expect(client_with_proxy.proxy).to have_key(:uri)
         expect(client_with_proxy.proxy).to have_key(:user)
         expect(client_with_proxy.proxy).to have_key(:password)
-      end
-    end
-
-    context 'HTTP GET' do
-      context 'with valid JSON response' do
-        it 'is a hash' do
-          VCR.use_cassette('client/valid_response') do
-            response = client.get 'market/total-items.json'
-            expect(response).to be_a(Hash)
-          end
-        end
-      end
-
-      context 'with invalid JSON response' do
-        it 'is a string' do
-          VCR.use_cassette('client/not_found') do
-            response = client.get 'non_existent_path'
-            expect(response).to be_a(String)
-          end
-        end
       end
     end
   end

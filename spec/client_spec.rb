@@ -7,7 +7,7 @@ describe Envato::Client do
 
   describe '.new' do
     it 'raises an error when the API access token is missing' do
-      expect { described_class.new }.to raise_error(MissingAPITokenError)
+      expect { described_class.new }.to raise_error(Envato::MissingAPITokenError)
     end
   end
 

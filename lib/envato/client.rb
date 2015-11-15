@@ -13,7 +13,7 @@ module Envato
       end
 
       if @access_token.nil?
-        raise MissingAPITokenError, 'You must define an API token for authorization.'
+        raise Envato::MissingAPITokenError, 'You must define an API access token for authorization.'
       end
     end
 
