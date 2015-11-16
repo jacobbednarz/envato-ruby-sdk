@@ -1,11 +1,13 @@
 require 'envato/connection'
 require 'envato/configurable'
+require 'envato/client/stats'
 
 module Envato
   class Client
 
     include Envato::Connection
     include Envato::Configurable
+    include Envato::Client::Stats
 
     def initialize(options = {})
       Envato::Configurable.keys.each do |key|
