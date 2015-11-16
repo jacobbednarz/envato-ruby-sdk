@@ -29,17 +29,25 @@ response = client.get 'market/total-users.json'
 # => {"total-users"=>{"total_users"=>"5942654"}}
 ```
 
-As this project grows the endpoints will be wrapped in usable methods so instead
-of building the request above, you can use the following:
+## Available endpoints
 
-```rb
-client = Envato::Client.new(access_token: 'mytops3crettoken')
-client.total_users
-# => 8676143
+Here is a list of the functionality available via this gem. All examples expect
+that you have already created a client called `client` as seen in the above
+example.
 
-# Or maybe...
-user_count = Envato::Users.total
-```
+- [total_items](https://build.envato.com/api/#market_TotalItems)
+
+  ```
+  client.total_items
+  # => 12345
+  ```
+
+- [total_users](https://build.envato.com/api/#market_TotalUsers)
+
+  ```
+  client.total_users
+  # => 23456
+  ```
 
 ## Testing
 
