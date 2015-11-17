@@ -29,6 +29,17 @@ module Envato
       inspected
     end
 
+    # Public: Conceal a sensitive string.
+    #
+    # This conceals everything in a string except for the first and last 4
+    # characters. Useful to hide sensitive data without removing it completely.
+    #
+    # Examples
+    #
+    #   conceal('secretstring')
+    #   # => 'secr****ring'
+    #
+    # Returns a String.
     def conceal(string)
       if string.length < 8
         '****'
