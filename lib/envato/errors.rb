@@ -9,4 +9,8 @@ module Envato
   class NotFoundError < Error; end
   class ClientError < Error; end
   class ServerError < Error; end
+
+  # Validation of Envato marketplaces.
+  class InvalidSiteName < Error; end
+  class InvalidSiteDomain < Error; end
 end

@@ -35,18 +35,24 @@ Here is a list of the functionality available via this gem. All examples expect
 that you have already created a client called `client` as seen in the above
 example.
 
-- [total_items](https://build.envato.com/api/#market_TotalItems)
+- [`total_items`](https://build.envato.com/api/#market_TotalItems)
 
-  ```
+  ```rb
   client.total_items
   # => 12345
   ```
 
-- [total_users](https://build.envato.com/api/#market_TotalUsers)
+- [`total_users`](https://build.envato.com/api/#market_TotalUsers)
 
-  ```
+  ```rb
   client.total_users
   # => 23456
+  ```
+- [`category_information_by_site`](https://build.envato.com/api/#market_NumberOfFiles)
+
+  ```rb
+  client.category_information_by_site('themeforest')
+  # => [{"category"=>"Site Templates", "number_of_files"=>"6551","url"=>"http://themeforest.net/category/site-templates"}, ... ]
   ```
 
 ## Testing
