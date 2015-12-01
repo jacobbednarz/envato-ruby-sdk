@@ -15,10 +15,6 @@ module Envato
       'https://api.envato.com'
     end
 
-    def api_version
-      'v1'
-    end
-
     private
 
     def request(method, url, options = {})
@@ -31,7 +27,7 @@ module Envato
 
       case method
       when :get
-        response = request.get "#{api_version}/#{url}"
+        response = request.get(url)
       end
 
       case response.status.to_i

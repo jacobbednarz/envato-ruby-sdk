@@ -14,15 +14,11 @@ describe Envato::Connection do
     it { expect(client.api_host).to be_a(String) }
   end
 
-  describe '#api_version' do
-    it { expect(client.api_version).to be_a(String) }
-  end
-
   describe '.get' do
     context 'with valid JSON response' do
       it 'is a hash' do
         VCR.use_cassette('client/valid_response') do
-          expect(client.get('market/total-items.json')).to be_a(Hash)
+          expect(client.get('v1/market/total-items.json')).to be_a(Hash)
         end
       end
     end
@@ -30,7 +26,7 @@ describe Envato::Connection do
     context 'server errors' do
       it 'raise a ServerError' do
         VCR.use_cassette('client/server_error') do
-          expect { client.get('market/active-threads:themeforest.net') }.to raise_error(Envato::ServerError)
+          expect { client.get('v1/market/active-threads:themeforest.net') }.to raise_error(Envato::ServerError)
         end
       end
     end
@@ -41,7 +37,7 @@ describe Envato::Connection do
           # Kill off the access token we've defined to force the authentication
           # to fail.
           client.access_token = ''
-          expect { client.get('market/non-existent-url') }.to raise_error(Envato::ForbiddenError)
+          expect { client.get('v1/market/non-existent-url') }.to raise_error(Envato::ForbiddenError)
         end
       end
     end
@@ -49,7 +45,7 @@ describe Envato::Connection do
     context 'not found requests' do
       it 'raise a NotFoundError' do
         VCR.use_cassette('client/not_found') do
-          expect { client.get('market/non-existent-url') }.to raise_error(Envato::NotFoundError)
+          expect { client.get('v1/market/non-existent-url') }.to raise_error(Envato::NotFoundError)
         end
       end
     end

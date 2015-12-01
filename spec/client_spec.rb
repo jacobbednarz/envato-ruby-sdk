@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe Envato::Client do
-  let(:api_host)    { 'https://api.envato.com' }
-  let(:api_version) { 'v1' }
-  let(:client)      { described_class.new(:access_token => test_api_token) }
+  let(:api_host) { 'https://api.envato.com' }
+  let(:client)   { described_class.new(:access_token => test_api_token) }
 
   describe '.new' do
     it 'raises an error when the API access token is missing' do
