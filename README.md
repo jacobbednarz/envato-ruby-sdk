@@ -153,6 +153,9 @@ It's super important you use real credentials when re-generating the cassettes
 to ensure it is an accurate representation of the interactions. (Don't worry, we
 don't commit your details to the cassettes they are filtered out by VCR!)
 
+Note: Do not use the value of `ENVATO_TEST_API_USERNAME` in any of your tests
+where it is passed into the URL. This will cause VCR not to create the cassette
+due to the `ENVATO_TEST_API_USERNAME` being replaced during sanitisation.
 ## Releasing a new version
 
 Everything you need to build a new release can be done by running:
