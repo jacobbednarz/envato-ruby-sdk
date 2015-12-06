@@ -29,11 +29,65 @@ response = client.get 'market/total-users.json'
 # => {"total-users"=>{"total_users"=>"5942654"}}
 ```
 
-## Available endpoints
+## Examples
 
 Here is a list of the functionality available via this gem. All examples expect
 that you have already created a client called `client` as seen in the above
-example.
+example. `...` represents multiple of the previous item repeated such as a hash
+or array item.
+
+#### User
+
+- [`account_details`](https://build.envato.com/api/#market_Account)
+
+  ```rb
+  client.account_details
+  # => {"image"=>"https://0.s3.envato.com/files/144155428/avatar.jpg", "firstname"=>"Jacob", "surname"=>"Bednarz", "available_earnings"=>"0.00", "total_deposits"=>"0.00", "balance"=>"0.00", "country"=>"Australia"}
+  ```
+
+- [`username`](https://build.envato.com/api/#market_Username)
+
+  ```rb
+  client.username
+  # => 'jacobbednarz'
+  ```
+
+- [`email_address`](https://build.envato.com/api/#market_Email)
+
+  ```rb
+  client.email_address
+  # => 'jacob@envato.com'
+  ```
+
+- [`user_information`](https://build.envato.com/api/#market_User)
+
+  ```rb
+  client.user_information('jacobbednarz')
+  # => {"username": "jacobbednarz","country": "Australia","sales": "0","location": "","image": "https://0.s3.envato.com/files/144155428/avatar.jpg","followers": "4"}
+  ```
+
+- [`badges_for_user`](https://build.envato.com/api/#market_UserBadges)
+
+  ```rb
+  client.badges_for_user('jacobbednarz')
+  # => [{"name"=>"country_au", "label"=>"Australia", "image"=>"https://dmypbau5frl9g.cloudfront.net/assets/badges/country_au-53dc340a932f5b9f1d1db574fb6712b4.svg"}, {"name"=>"envato_team", "label"=>"Envato Team", "image"=>"https://dmypbau5frl9g.cloudfront.net/assets/badges/envato_team-ac987db51c92549046fa25dfb7259bf9.svg"}, {"name"=>"exclusive", "label"=>"Exclusive Author", "image"=>"https://dmypbau5frl9g.cloudfront.net/assets/badges/exclusive-f7d9bbcda891f9ad25f00da4ea099435.svg"}]
+  ```
+
+- [`user_items_by_site`](https://build.envato.com/api/#market_UserItemsBySite)
+
+  ```rb
+  client.user_items_by_site('collis')
+  # => [{"site"=>"ThemeForest", "items"=>"1"}, {"site"=>"Tuts+ Marketplace", "items"=>"2"}]
+  ```
+
+- [`new_items_for_user`](https://build.envato.com/api/#market_NewFilesFromUser)
+
+  ```rb
+  client.new_items_for_user('collis', 'themeforest')
+  # => [{"id"=>"22705", "item"=>"Black + White Simple Theme", "url"=>"http://themeforest.net/item/black-white-simple-theme/22705", "user"=>"collis", "thumbnail"=>"https://preview-tf.s3.envato.com/files/60223.jpg", "sales"=>"916", "rating"=>"4.5", "rating_decimal"=>"4.32", "cost"=>"8.00", "uploaded_on"=>"Tue Dec 02 04:01:12 +1100 2008", "last_update"=>"", "tags"=>"clean", "category"=>"psd-templates/creative", "live_preview_url"=>"https://0.s3.envato.com/files/60224/1_home.__large_preview.jpg"}]
+  ```
+
+#### Marketplace Stats
 
 - [`total_items`](https://build.envato.com/api/#market_TotalItems)
 
@@ -48,11 +102,12 @@ example.
   client.total_users
   # => 23456
   ```
+
 - [`category_information_by_site`](https://build.envato.com/api/#market_NumberOfFiles)
 
   ```rb
   client.category_information_by_site('themeforest')
-  # => [{"category"=>"Site Templates", "number_of_files"=>"6551","url"=>"http://themeforest.net/category/site-templates"}, ... ]
+  # => [{"category"=>"Site Templates","number_of_files"=>"6551","url"=>"http://themeforest.net/category/site-templates"}, ... ]
   ```
 
 ## Testing

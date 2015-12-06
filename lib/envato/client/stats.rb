@@ -17,16 +17,6 @@ module Envato
         response = get "v1/market/number-of-files:#{sitename}.json"
         response['number-of-files']
       end
-
-      private
-
-      def marketplace_names
-        %w(graphicriver themeforest activeden codecanyon videohive audiojungle photdune 3docean)
-      end
-
-      def marketplace_domains
-        marketplace_names.map { |domain| "#{domain}.net" }
-      end
     end
   end
 end

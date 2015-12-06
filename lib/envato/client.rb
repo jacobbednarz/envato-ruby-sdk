@@ -1,6 +1,7 @@
 require 'envato/connection'
 require 'envato/configurable'
 require 'envato/client/stats'
+require 'envato/client/user'
 
 module Envato
   class Client
@@ -8,6 +9,7 @@ module Envato
     include Envato::Connection
     include Envato::Configurable
     include Envato::Client::Stats
+    include Envato::Client::User
 
     def initialize(options = {})
       Envato::Configurable.keys.each do |key|
@@ -48,6 +50,16 @@ module Envato
         back  = string[-4, 4]
         "#{front}****#{back}"
       end
+    end
+
+    private
+
+    def marketplace_names
+      %w(graphicriver themeforest activeden codecanyon videohive audiojungle photodune 3docean)
+    end
+
+    def marketplace_domains
+      marketplace_names.map { |domain| "#{domain}.net" }
     end
   end
 end
