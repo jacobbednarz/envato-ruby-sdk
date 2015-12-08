@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    envato-sdk (0.0.5)
+    envato-sdk (0.1.0)
       faraday (~> 0.8, >= 0.8.9)
       multi_json (~> 1.8, >= 1.8.2)
 
