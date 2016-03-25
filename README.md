@@ -66,6 +66,13 @@ or array item.
   # => [{"name"=>"Site Templates", "path"=>"site-templates"}, {"name"=>"Creative", "path"=>"site-templates/creative"}, {"name"=>"Portfolio", "path"=>"site-templates/creative/portfolio"}, {"name"=>"Photography", "path"=>"site-templates/creative/photography"}, {"name"=>"Art", "path"=>"site-templates/creative/art"}, {"name"=>"Experimental", "path"=>"site-templates/creative/experimental"} ...]
   ```
 
+- [`prices_for_item`](https://build.envato.com/api/#market_ItemPrices)
+
+  ```rb
+  client.prices_for_item(13582227)
+  # => [{"licence"=>"Regular License", "price"=>"24.00"}, {"licence"=>"Extended License", "price"=>"1200.00"}]
+  ```
+
 #### User
 
 - [`account_details`](https://build.envato.com/api/#market_Account)

@@ -24,6 +24,11 @@ module Envato
         response['categories']
       end
 
+      def prices_for_item(item_id)
+        response = get "v1/market/item-prices:#{item_id}.json"
+        response['item-prices']
+      end
+
     end
   end
 end
