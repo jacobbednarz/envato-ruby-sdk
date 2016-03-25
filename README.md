@@ -36,6 +36,15 @@ that you have already created a client called `client` as seen in the above
 example. `...` represents multiple of the previous item repeated such as a hash
 or array item.
 
+#### Catalog
+
+- [`get_public_collection`](https://build.envato.com/api/#market_0_Catalog_Collection)
+
+  ```rb
+  client.get_public_collection(5507368)
+  # => {"id"=>5507368, "name"=>"Test public collection", "description"=>"This is an example public collection", "private"=>false, "item_count"=>1, "image"=>"default-collection.png"}
+  ```
+
 #### User
 
 - [`account_details`](https://build.envato.com/api/#market_Account)
