@@ -36,6 +36,57 @@ that you have already created a client called `client` as seen in the above
 example. `...` represents multiple of the previous item repeated such as a hash
 or array item.
 
+#### Catalog
+
+- [`get_public_collection`](https://build.envato.com/api/#market_0_Catalog_Collection)
+
+  ```rb
+  client.get_public_collection(5507368)
+  # => {"id"=>5507368, "name"=>"Test public collection", "description"=>"This is an example public collection", "private"=>false, "item_count"=>1, "image"=>"default-collection.png"}
+  ```
+
+- [`get_item`](https://build.envato.com/api/#market_0_Catalog_Item)
+
+  ```rb
+  client.get_item(14157442)
+  # => {"id"=>14157442, "name"=>"Beautiful Watercolor - Hand Painted Creative WordPress", "description"=>"<p><img src=\"http://dtbaker.net/wp-content/uploads/sites ...
+  ```
+
+- [`popular_items_by_site`](https://build.envato.com/api/#market_Popular)
+
+  ```rb
+  client.popular_items_by_site('themeforest')
+  # => {"items_last_week"=>[{"id"=>"2833226", "item"=>"Avada | Responsive Multi-Purpose Theme", "url"=>"http://themeforest.net/item/avada-responsive-multipurpose-theme/2833226", "user"=>"ThemeFusion", "thumbnail"=>"https://0.s3.envato.com/files/169508862/Thumbnail.jpg", "sales"=>"1939", "rating"=>"5.0", "rating_decimal"=>"4.78", "cost"=>"59.00", "uploaded_on"=>"Thu Aug 16 01:28:46 +1000 2012", "last_update"=>"Thu Jan 28 12:13:49 +1100 2016", "tags"=>"blog, business, clean, corporate, creative, ecommerce, modern, multipurpose, one page, photography, portfolio, responsive, retina, woocommerce, wordpress", "category"=>"wordpress/corporate", "live_preview_url"=>"https://0.s3.envato.com/files/169508866/screenshots/00_preview.__large_preview.jpg"}, {"id"=>"5871901", "item"=>"X | The Theme", ...
+  ```
+
+- [`categories_by_site`](https://build.envato.com/api/#market_Categories)
+
+  ```rb
+  client.categories_by_site('themeforest')
+  # => [{"name"=>"Site Templates", "path"=>"site-templates"}, {"name"=>"Creative", "path"=>"site-templates/creative"}, {"name"=>"Portfolio", "path"=>"site-templates/creative/portfolio"}, {"name"=>"Photography", "path"=>"site-templates/creative/photography"}, {"name"=>"Art", "path"=>"site-templates/creative/art"}, {"name"=>"Experimental", "path"=>"site-templates/creative/experimental"} ...]
+  ```
+
+- [`prices_for_item`](https://build.envato.com/api/#market_ItemPrices)
+
+  ```rb
+  client.prices_for_item(13582227)
+  # => [{"licence"=>"Regular License", "price"=>"24.00"}, {"licence"=>"Extended License", "price"=>"1200.00"}]
+  ```
+
+- [`featured_by_site`](https://build.envato.com/api/#market_Features)
+
+  ```rb
+  client.featured_by_site('themeforest')
+  # => {"featured_file"=>{"id"=>"14631264", "item"=>"Luxury - Responsive Virtuemart Theme", "url"=>"http://themeforest.net/item/luxury-responsive-virtuemart-theme/14631264", "user"=>"dasinfomedia", "thumbnail"=>"https://0.s3.envato.com/files/169212120/luxury_thumb_jml.png", "sales"=>"27", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"48.00", "uploaded_on"=>"Wed Feb 03 04:32:39 +1100 2016", "last_update"=>"Wed Mar 23 01:40:20 +1100 2016", "tags"=>"clean, clear shop, clothing, creative design, fashion, home furniture, joomla 3 theme, lifestyle, modern, online shop, professional joomla template", "category"=>"cms-themes/joomla/retail/fashion", "live_preview_url"=>"https://0.s3.envato.com/files/169212284/01_preview.__large_preview.png"}, "featured_author"=>{"id"=>"2016597", "user"=>"DigitalAtelier", "url"=>"http://themeforest.net/user/digitalatelier", "thumbnail"=>"https://0.s3.envato.com/files/50767715/logo.png"}, "free_file"=>{"id"=>"11403244", "item"=>"Melica – Responsive WordPress Blog Theme", "url"=>"http://themeforest.net/item/melica-responsive-wordpress-blog-theme/11403244", "user"=>"wphunters", "thumbnail"=>"https://0.s3.envato.com/files/174945675/thumbnail.png", "sales"=>"52", "rating"=>"5.0", "rating_decimal"=>"5.00", "cost"=>"44.00", "uploaded_on"=>"Fri May 22 05:00:32 +1000 2015", "last_update"=>"Wed Mar 02 00:53:28 +1100 2016", "tags"=>"blog, blogger, clean, creative, fashion, food, instagram, minimal, modern, music, personal,slider, travel, video", "category"=>"wordpress/blog-magazine/personal", "live_preview_url"=>"https://0.s3.envato.com/files/174945678/preview_wp.__large_preview.jpg"}}
+  ```
+
+- [`random_new_items_by_site`](https://build.envato.com/api/#market_RandomNewFiles)
+
+  ```rb
+  client.random_new_items_by_site('themeforest')
+  # => [{"id"=>"15345030", "item"=>"Legal justice - HTML Template", "url"=>"http://themeforest.net/item/legal-justice-html-template/15345030", "user"=>"Xstyler", "thumbnail"=>"https://0.s3.envato.com/files/176988930/Thumbnail.png", "sales"=>"0", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"15.00"}, {"id"=>"15346859", "item"=>"Gear — Automotive Business/Auto Parts Store PSD Template", "url"=>"http://themeforest.net/item/gear-automotive-businessauto-parts-store-psd-template/15346859", "user"=>"torbara", "thumbnail"=>"https://0.s3.envato.com/files/177009058/Gear_Icon.png", "sales"=>"0", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"12.00"}, {"id"=>"15343695", "item"=>"Noren - Multi Store Responsive HTML Template","url"=>"http://themeforest.net/item/noren-multi-store-responsive-html-template/15343695", "user"=>"EngoTheme", "thumbnail"=>"https://0.s3.envato.com/files/178795450/80x80.jpg", "sales"=>"0", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"17.00"}, {"id"=>"14770935", "item"=>"Outlaw - Stylish WooCommerce WordPress Theme", "url"=>"http://themeforest.net/item/outlaw-stylish-woocommerce-wordpress-theme/14770935", "user"=>"elusivethemes", "thumbnail"=>"https://0.s3.envato.com/files/178441822/thumb.jpg", "sales"=>"0", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"59.00"}, {"id"=>"15101532", "item"=>"Ri Quartz - Responsive Multipurpose WooCommerce Theme", "url"=>"http://themeforest.net/item/ri-quartz-responsive-multipurpose-woocommerce-theme/15101532", "user"=>"CleverSoft", "thumbnail"=>"https://0.s3.envato.com/files/174287786/quartz.jpg", "sales"=>"1", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"59.00"}, {"id"=>"15332367", "item"=>"Highstand - Responsive MultiPurpose HTML5 Template ", "url"=>"http://themeforest.net/item/highstand-responsive-multipurpose-html5-template-/15332367", "user"=>"gsrthemes9", "thumbnail"=>"https://0.s3.envato.com/files/178795406/thumb.jpg", "sales"=>"1", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"17.00"}, {"id"=>"15156133", "item"=>"James - Responsive WooCommerce Shoes Theme", "url"=>"http://themeforest.net/item/james-responsive-woocommerce-shoes-theme/15156133", "user"=>"roadthemes", "thumbnail"=>"https://0.s3.envato.com/files/178879482/thumbnail.png", "sales"=>"0", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"59.00"}, {"id"=>"15319096", "item"=>"Mozar - Fashion Clothing Bootstrap Template", "url"=>"http://themeforest.net/item/mozar-fashion-clothing-bootstrap-template/15319096", "user"=>"BootExperts", "thumbnail"=>"https://0.s3.envato.com/files/176721976/thumbnail.png", "sales"=>"0", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"17.00"}, {"id"=>"14752612", "item"=>"Hash - Responsive WordPress Magazine Theme", "url"=>"http://themeforest.net/item/hash-responsive-wordpress-magazine-theme/14752612", "user"=>"PremiumLayers", "thumbnail"=>"https://0.s3.envato.com/files/178438623/80x80.jpg", "sales"=>"0", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"49.00"}, {"id"=>"15079135", "item"=>"BlueMed - Health and Medical WordPress Theme", "url"=>"http://themeforest.net/item/bluemed-health-and-medical-wordpress-theme/15079135", "user"=>"happy_robot", "thumbnail"=>"https://0.s3.envato.com/files/178384359/icon.png", "sales"=>"1", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"49.00"}]
+  ```
+
 #### User
 
 - [`account_details`](https://build.envato.com/api/#market_Account)
