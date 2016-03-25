@@ -52,6 +52,13 @@ or array item.
   # => {"id"=>14157442, "name"=>"Beautiful Watercolor - Hand Painted Creative WordPress", "description"=>"<p><img src=\"http://dtbaker.net/wp-content/uploads/sites ...
   ```
 
+- [`popular_items_by_site`](https://build.envato.com/api/#market_Popular)
+
+  ```rb
+  client.popular_items_by_site('themeforest')
+  # => {"items_last_week"=>[{"id"=>"2833226", "item"=>"Avada | Responsive Multi-Purpose Theme", "url"=>"http://themeforest.net/item/avada-responsive-multipurpose-theme/2833226", "user"=>"ThemeFusion", "thumbnail"=>"https://0.s3.envato.com/files/169508862/Thumbnail.jpg", "sales"=>"1939", "rating"=>"5.0", "rating_decimal"=>"4.78", "cost"=>"59.00", "uploaded_on"=>"Thu Aug 16 01:28:46 +1000 2012", "last_update"=>"Thu Jan 28 12:13:49 +1100 2016", "tags"=>"blog, business, clean, corporate, creative, ecommerce, modern, multipurpose, one page, photography, portfolio, responsive, retina, woocommerce, wordpress", "category"=>"wordpress/corporate", "live_preview_url"=>"https://0.s3.envato.com/files/169508866/screenshots/00_preview.__large_preview.jpg"}, {"id"=>"5871901", "item"=>"X | The Theme", ...
+  ```
+
 #### User
 
 - [`account_details`](https://build.envato.com/api/#market_Account)

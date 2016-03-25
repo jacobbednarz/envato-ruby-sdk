@@ -10,6 +10,13 @@ module Envato
         get "v3/market/catalog/item?id=#{item_id}"
       end
 
+      def popular_items_by_site(sitename)
+        raise Envato::InvalidSiteName unless marketplace_names.include? sitename
+
+        response = get "v1/market/popular:#{sitename}.json"
+        response['popular']
+      end
+
     end
   end
 end
