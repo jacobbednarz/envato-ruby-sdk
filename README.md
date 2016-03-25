@@ -73,6 +73,13 @@ or array item.
   # => [{"licence"=>"Regular License", "price"=>"24.00"}, {"licence"=>"Extended License", "price"=>"1200.00"}]
   ```
 
+- [`featured_by_site`](https://build.envato.com/api/#market_Features)
+
+  ```rb
+  client.featured_by_site('themeforest')
+  # => {"featured_file"=>{"id"=>"14631264", "item"=>"Luxury - Responsive Virtuemart Theme", "url"=>"http://themeforest.net/item/luxury-responsive-virtuemart-theme/14631264", "user"=>"dasinfomedia", "thumbnail"=>"https://0.s3.envato.com/files/169212120/luxury_thumb_jml.png", "sales"=>"27", "rating"=>"0.0", "rating_decimal"=>"0.00", "cost"=>"48.00", "uploaded_on"=>"Wed Feb 03 04:32:39 +1100 2016", "last_update"=>"Wed Mar 23 01:40:20 +1100 2016", "tags"=>"clean, clear shop, clothing, creative design, fashion, home furniture, joomla 3 theme, lifestyle, modern, online shop, professional joomla template", "category"=>"cms-themes/joomla/retail/fashion", "live_preview_url"=>"https://0.s3.envato.com/files/169212284/01_preview.__large_preview.png"}, "featured_author"=>{"id"=>"2016597", "user"=>"DigitalAtelier", "url"=>"http://themeforest.net/user/digitalatelier", "thumbnail"=>"https://0.s3.envato.com/files/50767715/logo.png"}, "free_file"=>{"id"=>"11403244", "item"=>"Melica – Responsive WordPress Blog Theme", "url"=>"http://themeforest.net/item/melica-responsive-wordpress-blog-theme/11403244", "user"=>"wphunters", "thumbnail"=>"https://0.s3.envato.com/files/174945675/thumbnail.png", "sales"=>"52", "rating"=>"5.0", "rating_decimal"=>"5.00", "cost"=>"44.00", "uploaded_on"=>"Fri May 22 05:00:32 +1000 2015", "last_update"=>"Wed Mar 02 00:53:28 +1100 2016", "tags"=>"blog, blogger, clean, creative, fashion, food, instagram, minimal, modern, music, personal,slider, travel, video", "category"=>"wordpress/blog-magazine/personal", "live_preview_url"=>"https://0.s3.envato.com/files/174945678/preview_wp.__large_preview.jpg"}}
+  ```
+
 #### User
 
 - [`account_details`](https://build.envato.com/api/#market_Account)

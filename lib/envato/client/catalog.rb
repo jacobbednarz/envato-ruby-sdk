@@ -29,6 +29,13 @@ module Envato
         response['item-prices']
       end
 
+      def featured_by_site(sitename)
+        raise Envato::InvalidSiteName unless marketplace_names.include? sitename
+
+        response = get "v1/market/features:#{sitename}.json"
+        response['features']
+      end
+
     end
   end
 end
