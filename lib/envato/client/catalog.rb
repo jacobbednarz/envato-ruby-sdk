@@ -36,6 +36,12 @@ module Envato
         response['features']
       end
 
+      def random_new_items_by_site(sitename)
+        raise Envato::InvalidSiteName unless marketplace_names.include? sitename
+
+        response = get "v1/market/random-new-files:#{sitename}.json"
+        response['random-new-files']
+      end
     end
   end
 end
