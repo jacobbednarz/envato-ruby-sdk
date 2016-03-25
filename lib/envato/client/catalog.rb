@@ -17,6 +17,13 @@ module Envato
         response['popular']
       end
 
+      def categories_by_site(sitename)
+        raise Envato::InvalidSiteName unless marketplace_names.include? sitename
+
+        response = get "v1/market/categories:#{sitename}.json"
+        response['categories']
+      end
+
     end
   end
 end
