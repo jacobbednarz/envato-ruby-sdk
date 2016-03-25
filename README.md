@@ -45,6 +45,13 @@ or array item.
   # => {"id"=>5507368, "name"=>"Test public collection", "description"=>"This is an example public collection", "private"=>false, "item_count"=>1, "image"=>"default-collection.png"}
   ```
 
+- [`get_item`](https://build.envato.com/api/#market_0_Catalog_Item)
+
+  ```rb
+  client.get_item(14157442)
+  # => {"id"=>14157442, "name"=>"Beautiful Watercolor - Hand Painted Creative WordPress", "description"=>"<p><img src=\"http://dtbaker.net/wp-content/uploads/sites ...
+  ```
+
 #### User
 
 - [`account_details`](https://build.envato.com/api/#market_Account)
