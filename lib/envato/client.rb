@@ -2,6 +2,7 @@ require 'envato/connection'
 require 'envato/configurable'
 require 'envato/client/stats'
 require 'envato/client/user'
+require 'envato/client/catalog'
 
 module Envato
   class Client
@@ -10,6 +11,7 @@ module Envato
     include Envato::Configurable
     include Envato::Client::Stats
     include Envato::Client::User
+    include Envato::Client::Catalog
 
     def initialize(options = {})
       Envato::Configurable.keys.each do |key|
