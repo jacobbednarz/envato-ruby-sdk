@@ -145,6 +145,13 @@ or array item.
   # => [{"month":"Mon Jun 01 00:00:00 +1000 2009","sales":"10","earnings":"120.60"} ... ]
   ```
 
+- [`user_statement`](https://build.envato.com/api/#market_Statement)
+
+  ```rb
+  client.user_statement
+  # => [{\"kind\":\"Author Fee\",\"amount\":\"-1.00\",\"description\":\"Author Fee for included support sale IVIP1234\",\"occured_at\":\"Sat Apr 09 05:11:49 +1000 2014\"} ... ]
+  ```
+
 #### Marketplace Stats
 
 - [`total_items`](https://build.envato.com/api/#market_TotalItems)

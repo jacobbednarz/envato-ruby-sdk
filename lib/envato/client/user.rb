@@ -41,6 +41,11 @@ module Envato
         response = get 'v1/market/private/user/earnings-and-sales-by-month.json'
         response['earnings-and-sales-by-month']
       end
+
+      def user_statement
+        response = get 'v1/market/private/user/statement.json'
+        response['statement']
+      end
     end
   end
 end

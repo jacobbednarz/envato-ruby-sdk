@@ -206,4 +206,37 @@ describe Envato::Client::User do
       end
     end
   end
+
+  describe '#user_statement' do
+    let(:user_statement_with_activity) do
+      VCR.use_cassette('client/user/user_statement/user_statement_with_activity') do
+       client.user_statement
+      end
+    end
+
+    context 'with no activity' do
+      it 'returns an array' do
+        VCR.use_cassette('client/user/user_statement/user_statement_with_no_events') do
+          expect(client.user_statement).to be_a(Array)
+        end
+      end
+    end
+
+    context 'with activity' do
+      it 'is an array' do
+        expect(user_statement_with_activity).to be_a(Array)
+      end
+
+      it 'is not empty' do
+        expect(user_statement_with_activity).to_not be_empty
+      end
+
+      it 'has required keys' do
+        required_keys = %w(kind amount description occured_at)
+        required_keys.each do |key|
+          expect(user_statement_with_activity.first).to have_key(key)
+        end
+      end
+    end
+  end
 end
