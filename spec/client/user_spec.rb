@@ -172,4 +172,38 @@ describe Envato::Client::User do
       end
     end
   end
+
+  describe '#author_sales_per_month' do
+    let(:author_with_sales_request) do
+      VCR.use_cassette('client/user/author_sales_per_month/with_sales') do
+       client.author_sales_per_month
+      end
+    end
+
+    context 'with no sales' do
+      it 'returns an empty array' do
+        VCR.use_cassette('client/user/author_sales_per_month/no_sales') do
+          response = client.author_sales_per_month
+          expect(response).to be_a(Array)
+        end
+      end
+    end
+
+    context 'with sales' do
+      it 'response is an array' do
+        expect(author_with_sales_request).to be_a(Array)
+      end
+
+      it 'is not empty' do
+        expect(author_with_sales_request).to_not be_empty
+      end
+
+      it 'has required keys' do
+        required_keys = %w(month earnings sales)
+        required_keys.each do |key|
+          expect(author_with_sales_request.first).to have_key(key)
+        end
+      end
+    end
+  end
 end

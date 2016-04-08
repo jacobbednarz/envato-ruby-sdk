@@ -37,6 +37,10 @@ module Envato
         response = get "v1/market/new-files-from-user:#{username},#{sitename}.json"
         response['new-files-from-user']
       end
+      def author_sales_per_month
+        response = get 'v1/market/private/user/earnings-and-sales-by-month.json'
+        response['earnings-and-sales-by-month']
+      end
     end
   end
 end
