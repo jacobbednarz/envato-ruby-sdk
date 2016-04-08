@@ -32,7 +32,7 @@ module Envato
 
       case response.status.to_i
         when 403      then raise Envato::ForbiddenError, extract_forbidden_message(response)
-        when 404      then raise Envato::NotFoundError
+        when 404      then raise Envato::NotFoundError, extract_not_found_message(response)
         when 405..499 then raise Envato::ClientError
         when 500..599 then raise Envato::ServerError, extract_server_error_message(response)
       end
@@ -46,12 +46,17 @@ module Envato
 
     def extract_forbidden_message(response)
       body = JSON.parse(response.body)
-      body['error_description']
+      body['error_description'] if body['error_description']
+    end
+
+    def extract_not_found_message(response)
+      body = JSON.parse(response.body)
+      body['description'] if body['description']
     end
 
     def extract_server_error_message(response)
       body = JSON.parse(response.body)
-      body['message']
+      body['message'] if body['message']
     end
   end
 end
