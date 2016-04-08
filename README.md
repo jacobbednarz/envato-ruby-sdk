@@ -114,7 +114,7 @@ or array item.
 
   ```rb
   client.user_information('jacobbednarz')
-  # => {"username": "jacobbednarz","country": "Australia","sales": "0","location": "","image": "https://0.s3.envato.com/files/144155428/avatar.jpg","followers": "4"}
+  # => {"username"=>"jacobbednarz", "country"=>"Australia", "sales"=>"0", "location"=>"", "image" => "https://0.s3.envato.com/files/144155428/avatar.jpg", "followers"=>"4"}
   ```
 
 - [`badges_for_user`](https://build.envato.com/api/#market_UserBadges)
@@ -142,14 +142,21 @@ or array item.
 
   ```rb
   client.author_sales_per_month
-  # => [{"month":"Mon Jun 01 00:00:00 +1000 2009","sales":"10","earnings":"120.60"} ... ]
+  # => [{"month"=>"Mon Jun 01 00:00:00 +1000 2009", "sales"=>"10", "earnings"=>"120.60"} ... ]
   ```
 
 - [`user_statement`](https://build.envato.com/api/#market_Statement)
 
   ```rb
   client.user_statement
-  # => [{\"kind\":\"Author Fee\",\"amount\":\"-1.00\",\"description\":\"Author Fee for included support sale IVIP1234\",\"occured_at\":\"Sat Apr 09 05:11:49 +1000 2014\"} ... ]
+  # => [{"kind"=>"Author Fee", "amount"=>"-1.00", "description"=>"Author Fee for included support sale IVIP1234", "occured_at"=>"Sat Apr 09 05:11:49 +1000 2014"} ... ]
+  ```
+
+- [`sales`](https://build.envato.com/api/#market_0_Author_Sales)
+
+  ```rb
+  client.sales
+  # => [{"amount"=>"20.00", "sold_at"=>"2016-04-09T05:19:48+10:00", "item"=>{"id"=>123456, "name"=>"A cool theme - WordPress","description"=>"This is a theme I made and looks good!", "summary"=>"Widget Ready: Yes" ... ]
   ```
 
 #### Marketplace Stats

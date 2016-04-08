@@ -46,6 +46,11 @@ module Envato
         response = get 'v1/market/private/user/statement.json'
         response['statement']
       end
+
+      def sales(page = 1)
+        raise TypeError unless page.is_a? Integer
+        get "v3/market/author/sales?page=#{page}"
+      end
     end
   end
 end

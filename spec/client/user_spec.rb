@@ -239,4 +239,35 @@ describe Envato::Client::User do
       end
     end
   end
+
+  describe '#sales' do
+    let(:valid_sales_request) do
+      VCR.use_cassette('client/user/sales/valid_sales') do
+        client.sales(1)
+      end
+    end
+
+    context 'with invalid page number' do
+      it 'raises a TypeError exception' do
+        expect { client.sales('notarealone') }.to raise_error(TypeError)
+      end
+    end
+
+    context 'using valid page number' do
+      it 'returns an array' do
+        expect(valid_sales_request).to be_a(Array)
+      end
+
+      it 'has required keys' do
+        required_keys = %w(amount sold_at item license support_amount supported_until)
+        required_keys.each do |key|
+          expect(valid_sales_request.first).to have_key(key)
+        end
+      end
+
+      it 'item key is a hash of details' do
+        expect(valid_sales_request.first['item']).to be_a(Hash)
+      end
+    end
+  end
 end
