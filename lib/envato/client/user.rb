@@ -52,6 +52,11 @@ module Envato
         raise TypeError unless page.is_a? Integer
         get "v3/market/author/sales?page=#{page}"
       end
+
+      def sale_by_purchase_code(purchase_code)
+        raise ArgumentError if purchase_code.nil?
+        get "v3/market/author/sale?code=#{purchase_code}"
+      end
     end
   end
 end

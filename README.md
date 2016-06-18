@@ -159,6 +159,13 @@ or array item.
   # => [{"amount"=>"20.00", "sold_at"=>"2016-04-09T05:19:48+10:00", "item"=>{"id"=>123456, "name"=>"A cool theme - WordPress","description"=>"This is a theme I made and looks good!", "summary"=>"Widget Ready: Yes" ... ]
   ```
 
+- [`sale_by_purchase_code`](https://build.envato.com/api/#market_0_Author_Sale)
+
+  ```rb
+  client.sale_by_purchase_code('1234-5678')
+  # => {"amount" => "5.40", "sold_at" => "2009-11-13T19:28:25+11:00", "item" => {"id":1234, "name":"Test theme - HTML","description":"Test description" ... }
+  ```
+
 #### Marketplace Stats
 
 - [`total_items`](https://build.envato.com/api/#market_TotalItems)

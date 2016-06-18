@@ -270,4 +270,33 @@ describe Envato::Client::User do
       end
     end
   end
+
+  describe '#sale_by_purchase_code' do
+    context 'with invalid purchase code' do
+      it 'returns returns a NotFound Exception' do
+        VCR.use_cassette('client/user/sale_by_purchase_code/invalid_code') do
+          expect { client.sale_by_purchase_code('1234-5678-90123').to raise_error(Envato::NotFoundError) }
+        end
+      end
+    end
+
+    context 'with a valid purchase code' do
+      let(:valid_purchase_request) do
+        VCR.use_cassette('client/user/sale_by_purchase_code/valid_code') do
+          client.sale_by_purchase_code(test_api_purchase_code)
+        end
+      end
+
+      it 'includes required keys' do
+        required_keys = %w(sold_at item license support_amount supported_until buyer purchase_count)
+        required_keys.each do |key|
+          expect(valid_purchase_request).to have_key(key)
+        end
+      end
+
+      it 'includes the item' do
+        expect(valid_purchase_request['item']).to be_a(Hash)
+      end
+    end
+  end
 end
