@@ -173,17 +173,17 @@ describe Envato::Client::User do
     end
   end
 
-  describe '#author_sales_per_month' do
+  describe '#sales_per_month' do
     let(:author_with_sales_request) do
       VCR.use_cassette('client/user/author_sales_per_month/with_sales') do
-       client.author_sales_per_month
+       client.sales_per_month
       end
     end
 
     context 'with no sales' do
       it 'returns an empty array' do
         VCR.use_cassette('client/user/author_sales_per_month/no_sales') do
-          response = client.author_sales_per_month
+          response = client.sales_per_month
           expect(response).to be_a(Array)
         end
       end

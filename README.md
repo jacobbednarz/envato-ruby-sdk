@@ -138,10 +138,10 @@ or array item.
   # => [{"id"=>"22705", "item"=>"Black + White Simple Theme", "url"=>"http://themeforest.net/item/black-white-simple-theme/22705", "user"=>"collis", "thumbnail"=>"https://preview-tf.s3.envato.com/files/60223.jpg", "sales"=>"916", "rating"=>"4.5", "rating_decimal"=>"4.32", "cost"=>"8.00", "uploaded_on"=>"Tue Dec 02 04:01:12 +1100 2008", "last_update"=>"", "tags"=>"clean", "category"=>"psd-templates/creative", "live_preview_url"=>"https://0.s3.envato.com/files/60224/1_home.__large_preview.jpg"}]
   ```
 
-- [`author_sales_per_month`](https://build.envato.com/api/#market_EarningsAndSalesByMonth)
+- [`sales_per_month`](https://build.envato.com/api/#market_EarningsAndSalesByMonth)
 
   ```rb
-  client.author_sales_per_month
+  client.sales_per_month
   # => [{"month"=>"Mon Jun 01 00:00:00 +1000 2009", "sales"=>"10", "earnings"=>"120.60"} ... ]
   ```
 
