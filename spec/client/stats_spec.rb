@@ -33,7 +33,7 @@ describe Envato::Client::Stats do
           sample_category = client.category_information_by_site('themeforest').first
 
           required_response_keys.each do |key|
-            expect(sample_category).to have_key(key)
+            expect(sample_category).to have_key(key.to_sym)
           end
         end
       end
