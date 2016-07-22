@@ -114,7 +114,7 @@ or array item.
 
   ```rb
   client.user_information('jacobbednarz')
-  # => {"username": "jacobbednarz","country": "Australia","sales": "0","location": "","image": "https://0.s3.envato.com/files/144155428/avatar.jpg","followers": "4"}
+  # => {"username"=>"jacobbednarz", "country"=>"Australia", "sales"=>"0", "location"=>"", "image" => "https://0.s3.envato.com/files/144155428/avatar.jpg", "followers"=>"4"}
   ```
 
 - [`badges_for_user`](https://build.envato.com/api/#market_UserBadges)
@@ -136,6 +136,34 @@ or array item.
   ```rb
   client.new_items_for_user('collis', 'themeforest')
   # => [{"id"=>"22705", "item"=>"Black + White Simple Theme", "url"=>"http://themeforest.net/item/black-white-simple-theme/22705", "user"=>"collis", "thumbnail"=>"https://preview-tf.s3.envato.com/files/60223.jpg", "sales"=>"916", "rating"=>"4.5", "rating_decimal"=>"4.32", "cost"=>"8.00", "uploaded_on"=>"Tue Dec 02 04:01:12 +1100 2008", "last_update"=>"", "tags"=>"clean", "category"=>"psd-templates/creative", "live_preview_url"=>"https://0.s3.envato.com/files/60224/1_home.__large_preview.jpg"}]
+  ```
+
+- [`sales_per_month`](https://build.envato.com/api/#market_EarningsAndSalesByMonth)
+
+  ```rb
+  client.sales_per_month
+  # => [{"month"=>"Mon Jun 01 00:00:00 +1000 2009", "sales"=>"10", "earnings"=>"120.60"} ... ]
+  ```
+
+- [`user_statement`](https://build.envato.com/api/#market_Statement)
+
+  ```rb
+  client.user_statement
+  # => [{"kind"=>"Author Fee", "amount"=>"-1.00", "description"=>"Author Fee for included support sale IVIP1234", "occured_at"=>"Sat Apr 09 05:11:49 +1000 2014"} ... ]
+  ```
+
+- [`sales`](https://build.envato.com/api/#market_0_Author_Sales)
+
+  ```rb
+  client.sales
+  # => [{"amount"=>"20.00", "sold_at"=>"2016-04-09T05:19:48+10:00", "item"=>{"id"=>123456, "name"=>"A cool theme - WordPress","description"=>"This is a theme I made and looks good!", "summary"=>"Widget Ready: Yes" ... ]
+  ```
+
+- [`sale_by_purchase_code`](https://build.envato.com/api/#market_0_Author_Sale)
+
+  ```rb
+  client.sale_by_purchase_code('1234-5678')
+  # => {"amount" => "5.40", "sold_at" => "2009-11-13T19:28:25+11:00", "item" => {"id":1234, "name":"Test theme - HTML","description":"Test description" ... }
   ```
 
 #### Marketplace Stats

@@ -172,4 +172,131 @@ describe Envato::Client::User do
       end
     end
   end
+
+  describe '#sales_per_month' do
+    let(:author_with_sales_request) do
+      VCR.use_cassette('client/user/author_sales_per_month/with_sales') do
+       client.sales_per_month
+      end
+    end
+
+    context 'with no sales' do
+      it 'returns an empty array' do
+        VCR.use_cassette('client/user/author_sales_per_month/no_sales') do
+          response = client.sales_per_month
+          expect(response).to be_a(Array)
+        end
+      end
+    end
+
+    context 'with sales' do
+      it 'response is an array' do
+        expect(author_with_sales_request).to be_a(Array)
+      end
+
+      it 'is not empty' do
+        expect(author_with_sales_request).to_not be_empty
+      end
+
+      it 'has required keys' do
+        required_keys = %w(month earnings sales)
+        required_keys.each do |key|
+          expect(author_with_sales_request.first).to have_key(key)
+        end
+      end
+    end
+  end
+
+  describe '#user_statement' do
+    let(:user_statement_with_activity) do
+      VCR.use_cassette('client/user/user_statement/user_statement_with_activity') do
+       client.user_statement
+      end
+    end
+
+    context 'with no activity' do
+      it 'returns an array' do
+        VCR.use_cassette('client/user/user_statement/user_statement_with_no_events') do
+          expect(client.user_statement).to be_a(Array)
+        end
+      end
+    end
+
+    context 'with activity' do
+      it 'is an array' do
+        expect(user_statement_with_activity).to be_a(Array)
+      end
+
+      it 'is not empty' do
+        expect(user_statement_with_activity).to_not be_empty
+      end
+
+      it 'has required keys' do
+        required_keys = %w(kind amount description occured_at)
+        required_keys.each do |key|
+          expect(user_statement_with_activity.first).to have_key(key)
+        end
+      end
+    end
+  end
+
+  describe '#sales' do
+    let(:valid_sales_request) do
+      VCR.use_cassette('client/user/sales/valid_sales') do
+        client.sales(1)
+      end
+    end
+
+    context 'with invalid page number' do
+      it 'raises a TypeError exception' do
+        expect { client.sales('notarealone') }.to raise_error(TypeError)
+      end
+    end
+
+    context 'using valid page number' do
+      it 'returns an array' do
+        expect(valid_sales_request).to be_a(Array)
+      end
+
+      it 'has required keys' do
+        required_keys = %w(amount sold_at item license support_amount supported_until)
+        required_keys.each do |key|
+          expect(valid_sales_request.first).to have_key(key)
+        end
+      end
+
+      it 'item key is a hash of details' do
+        expect(valid_sales_request.first['item']).to be_a(Hash)
+      end
+    end
+  end
+
+  describe '#sale_by_purchase_code' do
+    context 'with invalid purchase code' do
+      it 'returns returns a NotFound Exception' do
+        VCR.use_cassette('client/user/sale_by_purchase_code/invalid_code') do
+          expect { client.sale_by_purchase_code('1234-5678-90123').to raise_error(Envato::NotFoundError) }
+        end
+      end
+    end
+
+    context 'with a valid purchase code' do
+      let(:valid_purchase_request) do
+        VCR.use_cassette('client/user/sale_by_purchase_code/valid_code') do
+          client.sale_by_purchase_code(test_api_purchase_code)
+        end
+      end
+
+      it 'includes required keys' do
+        required_keys = %w(sold_at item license support_amount supported_until buyer purchase_count)
+        required_keys.each do |key|
+          expect(valid_purchase_request).to have_key(key)
+        end
+      end
+
+      it 'includes the item' do
+        expect(valid_purchase_request['item']).to be_a(Hash)
+      end
+    end
+  end
 end

@@ -37,6 +37,26 @@ module Envato
         response = get "v1/market/new-files-from-user:#{username},#{sitename}.json"
         response['new-files-from-user']
       end
+
+      def sales_per_month
+        response = get 'v1/market/private/user/earnings-and-sales-by-month.json'
+        response['earnings-and-sales-by-month']
+      end
+
+      def user_statement
+        response = get 'v1/market/private/user/statement.json'
+        response['statement']
+      end
+
+      def sales(page = 1)
+        raise TypeError unless page.is_a? Integer
+        get "v3/market/author/sales?page=#{page}"
+      end
+
+      def sale_by_purchase_code(purchase_code)
+        raise ArgumentError if purchase_code.nil?
+        get "v3/market/author/sale?code=#{purchase_code}"
+      end
     end
   end
 end
