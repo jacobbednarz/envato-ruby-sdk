@@ -10,7 +10,7 @@ describe Envato::Client::User do
         account_details = client.account_details
 
         required_account_keys.each do |key|
-          expect(account_details).to have_key(key)
+          expect(account_details).to have_key(key.to_sym)
         end
       end
     end
@@ -39,7 +39,7 @@ describe Envato::Client::User do
         user_information = client.user_information 'collis'
 
         required_user_keys.each do |key|
-          expect(user_information).to have_key(key)
+          expect(user_information).to have_key(key.to_sym)
         end
       end
     end
@@ -47,7 +47,7 @@ describe Envato::Client::User do
     it 'returns the image over HTTPS' do
       VCR.use_cassette('client/user/user_information') do
         user_information = client.user_information 'collis'
-        expect(user_information['image']).to start_with 'https://'
+        expect(user_information[:image]).to start_with 'https://'
       end
     end
   end
@@ -66,7 +66,7 @@ describe Envato::Client::User do
       user_badge = user_badges.first
 
       required_badge_keys.each do |key|
-        expect(user_badge).to have_key(key)
+        expect(user_badge).to have_key(key.to_sym)
       end
     end
   end
@@ -98,7 +98,7 @@ describe Envato::Client::User do
         items_by_site = user_with_items.first
 
         required_item_keys.each do |key|
-          expect(items_by_site).to have_key(key)
+          expect(items_by_site).to have_key(key.to_sym)
         end
       end
     end
@@ -146,7 +146,7 @@ describe Envato::Client::User do
           new_item_by_user   = valid_request_with_items.first
 
           required_item_keys.each do |key|
-            expect(new_item_by_user).to have_key(key)
+            expect(new_item_by_user).to have_key(key.to_sym)
           end
         end
       end
@@ -201,7 +201,7 @@ describe Envato::Client::User do
       it 'has required keys' do
         required_keys = %w(month earnings sales)
         required_keys.each do |key|
-          expect(author_with_sales_request.first).to have_key(key)
+          expect(author_with_sales_request.first).to have_key(key.to_sym)
         end
       end
     end
@@ -234,7 +234,7 @@ describe Envato::Client::User do
       it 'has required keys' do
         required_keys = %w(kind amount description occured_at)
         required_keys.each do |key|
-          expect(user_statement_with_activity.first).to have_key(key)
+          expect(user_statement_with_activity.first).to have_key(key.to_sym)
         end
       end
     end
@@ -261,12 +261,12 @@ describe Envato::Client::User do
       it 'has required keys' do
         required_keys = %w(amount sold_at item license support_amount supported_until)
         required_keys.each do |key|
-          expect(valid_sales_request.first).to have_key(key)
+          expect(valid_sales_request.first).to have_key(key.to_sym)
         end
       end
 
       it 'item key is a hash of details' do
-        expect(valid_sales_request.first['item']).to be_a(Hash)
+        expect(valid_sales_request.first[:item]).to be_a(Hash)
       end
     end
   end
@@ -290,12 +290,12 @@ describe Envato::Client::User do
       it 'includes required keys' do
         required_keys = %w(sold_at item license support_amount supported_until buyer purchase_count)
         required_keys.each do |key|
-          expect(valid_purchase_request).to have_key(key)
+          expect(valid_purchase_request).to have_key(key.to_sym)
         end
       end
 
       it 'includes the item' do
-        expect(valid_purchase_request['item']).to be_a(Hash)
+        expect(valid_purchase_request[:item]).to be_a(Hash)
       end
     end
   end

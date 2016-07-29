@@ -20,7 +20,7 @@ describe Envato::Client::Catalog do
         public_collection = client.get_public_collection(valid_collection_id)
 
         required_response_keys.each do |key|
-          expect(public_collection).to have_key(key)
+          expect(public_collection).to have_key(key.to_sym)
         end
       end
     end
@@ -42,7 +42,7 @@ describe Envato::Client::Catalog do
         public_collection = client.get_item(valid_item_id)
 
         required_response_keys.each do |key|
-          expect(public_collection).to have_key(key)
+          expect(public_collection).to have_key(key.to_sym)
         end
       end
     end
@@ -51,7 +51,7 @@ describe Envato::Client::Catalog do
       it 'is an array' do
         VCR.use_cassette('client/catalog/get_item') do
           public_collection = client.get_item(valid_item_id)
-          expect(public_collection['attributes']).to be_a(Array)
+          expect(public_collection[:attributes]).to be_a(Array)
         end
       end
     end
@@ -73,7 +73,7 @@ describe Envato::Client::Catalog do
           required_response_keys = %w(items_last_week authors_last_month)
 
           required_response_keys.each do |key|
-            expect(popular_items).to have_key(key)
+            expect(popular_items).to have_key(key.to_sym)
           end
         end
       end
@@ -115,7 +115,7 @@ describe Envato::Client::Catalog do
           featured = client.featured_by_site(valid_marketplace)
 
           required_keys.each do |key|
-            expect(featured).to have_key(key)
+            expect(featured).to have_key(key.to_sym)
           end
         end
       end
