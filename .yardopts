@@ -1,1 +1,3 @@
---plugin yard-tomdoc
+--no-private
+--title=""
+--markup=markdown

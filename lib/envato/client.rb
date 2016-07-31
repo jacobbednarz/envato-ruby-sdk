@@ -33,17 +33,20 @@ module Envato
       inspected
     end
 
-    # Public: Conceal a sensitive string.
+    # Conceal a sensitive string.
     #
     # This conceals everything in a string except for the first and last 4
     # characters. Useful to hide sensitive data without removing it completely.
     #
-    # Examples
-    #
+    # @example Concealing a string over 8 characters.
     #   conceal('secretstring')
     #   # => 'secr****ring'
+    # @example Concealing a string under 8 characters.
+    #   conceal('tester')
+    #   # => '****'
     #
-    # Returns a String.
+    # @param string [String] String you wish to conceal.
+    # @return [String] Concealed version of the string.
     def conceal(string)
       if string.length < 8
         '****'
@@ -56,10 +59,16 @@ module Envato
 
     private
 
+    # All 'known' marketplace names we wish to allow querying via.
+    #
+    # @return [Array] Marketplace names we wish to whitelist.
     def marketplace_names
       %w(graphicriver themeforest activeden codecanyon videohive audiojungle photodune 3docean)
     end
 
+    # Domain versions of the marketplace names.
+    #
+    # @return [Array] Marketplace domains including the TLD.
     def marketplace_domains
       marketplace_names.map { |domain| "#{domain}.net" }
     end
