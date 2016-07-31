@@ -1,4 +1,4 @@
-# Envato Ruby SDK [![Build Status](https://travis-ci.org/jacobbednarz/envato-ruby-sdk.svg?branch=master)](https://travis-ci.org/jacobbednarz/envato-ruby-sdk)
+# Envato Ruby SDK [![Build Status](https://travis-ci.org/jacobbednarz/envato-ruby-sdk.svg?branch=master)](https://travis-ci.org/jacobbednarz/envato-ruby-sdk) [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](www.rubydoc.info/github/jacobbednarz/envato-ruby-sdk)
 
 Interact with the [Envato API][envato_api_url] using Ruby.
 
